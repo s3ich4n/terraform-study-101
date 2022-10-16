@@ -44,6 +44,22 @@
 - s3 backend에 대한 다른 사람의 의견
 
 > 저는 2021년부터 s3 backend로 쓰고 있긴한데, 아직 사고는 없었구요. 운영환경에서 걱정된다면 s3 버전관리를 켜놓으면 좀 안심 될 것 같네요
+```terraform
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "4.10.0" # 2022-04-15
+    }
+  }
+  backend "s3" {
+    bucket = "버킷이름"
+    key    = "terraform-backend/저장될파일명"
+    region = "ap-northeast-2"
+  }
+}
+```
+
 
 - GitOps 라는 키워드를 가지고 대화하시는 분들의 의견
 
