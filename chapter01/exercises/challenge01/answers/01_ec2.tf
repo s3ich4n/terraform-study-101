@@ -24,6 +24,6 @@ resource "aws_instance" "challenge01-server" {
   }
 
   depends_on = [
-    aws_internet_gateway.igw
+    aws_internet_gateway.challenge01-igw
   ]
 }
