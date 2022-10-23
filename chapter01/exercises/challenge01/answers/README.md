@@ -1,6 +1,8 @@
 # AWS VPC (subnet, IGW 등)을 코드로 배포한 환경에서 EC2 웹서버 배포
 
-제 1번, AWS VPC에 대해 IaC화 후 EC2 웹서버를 추가하여 프로비저닝을 진행한다.
+제 1번, AWS VPC에 대해 IaC화 후 프로비저닝을 진행하도록 한다.
+
+아울러 해당 내용은 [해당 웹사이트](https://terraform101.inflearn.devopsart.dev/)를 참고하였다.
 
 ## VPC 기본개념
 
