@@ -46,6 +46,22 @@ resource "aws_lb_target_group" "s3ich4n-chapter02-ex02-alb-tg" {
   }
 }
 
+resource "aws_lb_listener_rule" "s3ich4n-chapter02-ex02-alb-listener-rule" {
+  listener_arn = aws_lb_listener.s3ich4n-chapter02-ex02-http-listener.arn
+  priority     = 100
+
+  condition {
+    path_pattern {
+      values = ["*"]
+    }
+  }
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.s3ich4n-chapter02-ex02-alb-tg.arn
+  }
+}
+
 output "s3ich4n-chapter02-ex02-alb_dns" {
   value       = aws_lb.s3ich4n-chapter02-ex02-alb.dns_name
   description = "The DNS Address of the ALB"

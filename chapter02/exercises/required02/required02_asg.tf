@@ -45,8 +45,12 @@ resource "aws_autoscaling_group" "s3ich4n-chapter02-ex02-asg" {
     aws_subnet.s3ich4n-chapter02-ex02-subnet1.id,
     aws_subnet.s3ich4n-chapter02-ex02-subnet2.id
   ]
-  min_size = 2
+  min_size = 3
   max_size = 10
+
+  # 새 대상그룹을 지정 및 Healthcheck 변경 
+  health_check_type = "ELB"
+  target_group_arns = [aws_lb_target_group.s3ich4n-chapter02-ex02-alb-tg.arn]
 
   tag {
     key                 = "Name"
