@@ -1,4 +1,4 @@
 #!/bin/bash
-cd ../../prod/services/webserver-cluster
+cd ../../stage/services/webserver-cluster
 
 terraform destroy -auto-approve

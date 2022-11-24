@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ../../prod/data-stores/mysql
+cd ../../stage/data-stores/mysql
 
 terraform init
 
