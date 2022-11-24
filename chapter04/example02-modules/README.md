@@ -8,11 +8,17 @@
 
 ### 테스트 방법: production
 
-`$ ./provision.sh`
+```
+./provision.sh
+./after_provision_test.sh
+```
 
 ### 테스트 방법: staging
 
-`$ ./stage_provision.sh`
+```
+./stage_provision.sh
+./after_provision_test.sh
+```
 
 ## 종료순서
 
@@ -22,8 +28,12 @@
 
 ### 테스트 방법: production
 
-`$ ./destroy.sh`
+```
+./destroy.sh
+```
 
 ### 테스트 방법: staging
 
-`$ ./stage_destroy.sh`
+```
+$ ./stage_destroy.sh
+```

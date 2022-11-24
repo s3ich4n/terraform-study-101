@@ -114,7 +114,7 @@ output "alb_security_group_id" {
 }
 ```
 
-이제 스테이징 환경에서 테스트를 위해 추가로 포트를 노출 시, aws_security_group_rule 리소스를 `stage/services/webserver-cluster/main.t`f 에 추가
+이제 스테이징 환경에서 테스트를 위해 추가로 포트를 노출 시, aws_security_group_rule 리소스를 `stage/services/webserver-cluster/main.tf` 에 추가
 
 ```terraform
 module "webserver_cluster" {
