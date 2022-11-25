@@ -1,5 +1,5 @@
 #!/bin/bash
-cd ../../stage/s3
+cd ../../global/s3
 
 terraform init
 

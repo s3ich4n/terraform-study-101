@@ -1,11 +1,12 @@
 #!/bin/bash
 
-printf 'This command will CREATE ALL EXAMPLES. THIS COMMAND WILL CHARGE pay-as-you-go. continue? (y/n)? '
+echo '[STAGING] This command will CREATE ALL EXAMPLES. '
+printf 'THESE COMMANDS WILL CHARGE pay-as-you-go. continue? (y/n)? '
 read answer
 
-
 if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
-    cd scripts/prod
+
+    cd scripts/stage
 
     echo ""
     echo "################################"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf 'This command will DESTROY ALL EXAMPLES. continue? (y/n)? '
+printf '[STAGING] These commands will DESTROY ALL EXAMPLES. continue? (y/n)? '
 read answer
 
 if [ "$answer" != "${answer#[Yy]}" ] ;then # this grammar (the #[] operator) means that the variable $answer where any Y or y in 1st position will be dropped if they exist.
