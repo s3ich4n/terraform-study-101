@@ -4,10 +4,10 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket         = "stage-ex4-s3-bucket"
+    bucket         = "ex4-s3-bucket"
     key            = "stage/services/webserver-cluster/terraform.tfstate"
     region         = "ap-northeast-2"
-    dynamodb_table = "stage-terraform-locks-week4-files"
+    dynamodb_table = "terraform-locks-week4-files"
   }
 }
 
@@ -15,7 +15,7 @@ module "webserver_cluster" {
   source = "../../../modules/services/webserver-cluster"
 
   ex4_cluster_name            = "webservers-stage"
-  db_remote_state_bucket_name = "stage-ex4-s3-bucket"
+  db_remote_state_bucket_name = "ex4-s3-bucket"
   db_remote_state_key         = "stage/data-stores/mysql/terraform.tfstate"
   env_type                    = "stage"
 

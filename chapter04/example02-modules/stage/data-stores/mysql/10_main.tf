@@ -4,10 +4,10 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket         = "stage-ex4-s3-bucket"
+    bucket         = "ex4-s3-bucket"
     key            = "stage/data-stores/mysql/terraform.tfstate"
     region         = "ap-northeast-2"
-    dynamodb_table = "stage-terraform-locks-week4-files"
+    dynamodb_table = "terraform-locks-week4-files"
   }
 }
 
