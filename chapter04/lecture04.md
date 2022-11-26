@@ -114,7 +114,7 @@ output "alb_security_group_id" {
 }
 ```
 
-이제 스테이징 환경에서 테스트를 위해 추가로 포트를 노출 시, aws_security_group_rule 리소스를 `stage/services/webserver-cluster/main.t`f 에 추가
+이제 스테이징 환경에서 테스트를 위해 추가로 포트를 노출 시, aws_security_group_rule 리소스를 `stage/services/webserver-cluster/main.tf` 에 추가
 
 ```terraform
 module "webserver_cluster" {
@@ -149,6 +149,8 @@ resource "aws_security_group_rule" "allow_testing_inbound" {
 ## 실습
 
 - 3주차 실습 코드 내용을 기반으로 책 4장에 나온 모듈을 적용해서 테라폼 코드로 배포해보시기 바랍니다!
+  1. s3 버킷부터 생성
+  2. prod/stage 를 각각 생성
 - 배포 환경이 복잡하다면, 간단한 리소스를 모듈로 만들고 2개의 환경(dev, stg 등)에서 모듈을 참조해서 배포할 수 있게 테스트 해보셔도 좋습니다.
 
 ## 과제

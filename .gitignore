@@ -154,3 +154,5 @@ terraform.rc
 
 # additional ignore files
 .envrc
+.terraform/
+.terraform.lock.hcl
