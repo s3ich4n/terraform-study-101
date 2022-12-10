@@ -20,7 +20,19 @@ Secrets Management Basics
 - 민감 정보(DB암호, API 키, TLS인증서, SSH키, GPG 키 등)값은 프로비저닝될 때 안전하게 관리될 필요가 있습니다.
 
 ```terraform
+resource "aws_db_instance" "example" {
+  identifier_prefix   = "terraform-up-and-running"
+  engine              = "mysql"
+  allocated_storage   = 10
+  instance_class      = "db.t2.micro"
+  skip_final_snapshot = true
+  db_name             = var.db_name
 
+  # DO NOT DO THIS!!!
+  username = "admin"
+  password = "password"
+  # DO NOT DO THIS!!!
+}
 ```
 
 비밀번호를 누구든 알 수 없게 하면 안 된다는 것은 상식이지만, 방법을 모르면 사실상 비밀번호를 노출시키는 것과 다름 없기 때문에, 이를 관리하는 도구를 사용해야합니다.
@@ -180,6 +192,8 @@ plan 파일안에는 모든 정보가 평문으로 저장되어있습니다. 따
 
 ## 과제
 
-- 민감정보를 관리하는 테스트를 해보고 스크린샷을 올리기
+- [완료] 민감정보를 관리하는 테스트를 해보고 스크린샷을 올리기
 
 ## Tips and tricks
+
+- 현재 내용 자체를 잘 숙지하고 활용합시다.
