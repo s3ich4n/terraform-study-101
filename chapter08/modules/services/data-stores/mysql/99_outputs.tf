@@ -1,10 +1,10 @@
 output "rds_address" {
-  value       = aws_db_instance.ex4_rds.address
+  value       = aws_db_instance.ex8_rds.address
   description = "DB connect endpoint addr."
 }
 
 output "rds_port" {
-  value       = aws_db_instance.ex4_rds.port
+  value       = aws_db_instance.ex8_rds.port
   description = "DB connect endpoint port"
 }
 

@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket         = "ex4-s3-bucket"
+    bucket         = "ex8-s3-bucket"
     key            = "prod/data-stores/mysql/terraform.tfstate"
     region         = "ap-northeast-2"
     dynamodb_table = "terraform-locks-week4-files"

@@ -36,7 +36,7 @@ resource "aws_subnet" "webserver-subnet2" {
 
 ##### Internet gateways
 
-resource "aws_internet_gateway" "ex4-file-layout-webserver-igw" {
+resource "aws_internet_gateway" "ex8-file-layout-webserver-igw" {
   vpc_id = data.terraform_remote_state.db.outputs.vpc_id
 
   tags = {
@@ -46,7 +46,7 @@ resource "aws_internet_gateway" "ex4-file-layout-webserver-igw" {
 
 ##### Route tables
 
-resource "aws_route_table" "ex4-file-layout-webserver-rt" {
+resource "aws_route_table" "ex8-file-layout-webserver-rt" {
   vpc_id = data.terraform_remote_state.db.outputs.vpc_id
 
   tags = {
@@ -54,46 +54,46 @@ resource "aws_route_table" "ex4-file-layout-webserver-rt" {
   }
 }
 
-resource "aws_route_table_association" "ex4-file-layout-webserver-rt-association1" {
+resource "aws_route_table_association" "ex8-file-layout-webserver-rt-association1" {
   subnet_id      = aws_subnet.webserver-subnet1.id
-  route_table_id = aws_route_table.ex4-file-layout-webserver-rt.id
+  route_table_id = aws_route_table.ex8-file-layout-webserver-rt.id
 }
 
-resource "aws_route_table_association" "ex4-file-layout-webserver-rt-association2" {
+resource "aws_route_table_association" "ex8-file-layout-webserver-rt-association2" {
   subnet_id      = aws_subnet.webserver-subnet2.id
-  route_table_id = aws_route_table.ex4-file-layout-webserver-rt.id
+  route_table_id = aws_route_table.ex8-file-layout-webserver-rt.id
 }
 
-resource "aws_route" "ex4-file-layout-webserver-default-route" {
-  route_table_id         = aws_route_table.ex4-file-layout-webserver-rt.id
+resource "aws_route" "ex8-file-layout-webserver-default-route" {
+  route_table_id         = aws_route_table.ex8-file-layout-webserver-rt.id
   destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.ex4-file-layout-webserver-igw.id
+  gateway_id             = aws_internet_gateway.ex8-file-layout-webserver-igw.id
 }
 
 ##### Security groups
 
-resource "aws_security_group" "ex4-file-layout-webserver-sg" {
+resource "aws_security_group" "ex8-file-layout-webserver-sg" {
   vpc_id      = data.terraform_remote_state.db.outputs.vpc_id
-  name        = "${var.ex4_cluster_name}-alb"
+  name        = "${var.ex8_cluster_name}-alb"
   description = "${var.env_type}-T101 study sg webserver"
 }
 
-resource "aws_security_group_rule" "ex4-file-layout-webserver-inbound" {
+resource "aws_security_group_rule" "ex8-file-layout-webserver-inbound" {
   type              = "ingress"
   from_port         = local.http_port
   to_port           = local.http_port
   protocol          = local.tcp_protocol
   cidr_blocks       = local.all_ips
-  security_group_id = aws_security_group.ex4-file-layout-webserver-sg.id
+  security_group_id = aws_security_group.ex8-file-layout-webserver-sg.id
 }
 
-resource "aws_security_group_rule" "ex4-file-layout-webserver-outbound" {
+resource "aws_security_group_rule" "ex8-file-layout-webserver-outbound" {
   type              = "egress"
   from_port         = local.any_port
   to_port           = local.any_port
   protocol          = local.any_protocol
   cidr_blocks       = local.all_ips
-  security_group_id = aws_security_group.ex4-file-layout-webserver-sg.id
+  security_group_id = aws_security_group.ex8-file-layout-webserver-sg.id
 }
 
 ################################################
@@ -112,7 +112,7 @@ data "template_file" "user_data" {
   }
 }
 
-data "aws_ami" "ex4-file-layout-amazonlinux2" {
+data "aws_ami" "ex8-file-layout-amazonlinux2" {
   most_recent = true
   filter {
     name   = "owner-alias"
@@ -127,11 +127,11 @@ data "aws_ami" "ex4-file-layout-amazonlinux2" {
   owners = ["amazon"]
 }
 
-resource "aws_launch_configuration" "ex4-file-layout-launchconfig" {
+resource "aws_launch_configuration" "ex8-file-layout-launchconfig" {
   name_prefix                 = "${var.env_type}-t101-launchconfig-"
-  image_id                    = data.aws_ami.ex4-file-layout-amazonlinux2.id
+  image_id                    = data.aws_ami.ex8-file-layout-amazonlinux2.id
   instance_type               = var.instance_type
-  security_groups             = [aws_security_group.ex4-file-layout-webserver-sg.id]
+  security_groups             = [aws_security_group.ex8-file-layout-webserver-sg.id]
   associate_public_ip_address = true
 
   # Render the User Data script as a template
@@ -147,11 +147,11 @@ resource "aws_launch_configuration" "ex4-file-layout-launchconfig" {
   }
 }
 
-resource "aws_autoscaling_group" "ex4-file-layout-asg" {
-  name                 = "${var.env_type}-ex4-file-layout-asg"
+resource "aws_autoscaling_group" "ex8-file-layout-asg" {
+  name                 = "${var.env_type}-ex8-file-layout-asg"
   health_check_type    = "ELB"
-  target_group_arns    = [aws_lb_target_group.ex4-file-layout-albtg.arn]
-  launch_configuration = aws_launch_configuration.ex4-file-layout-launchconfig.name
+  target_group_arns    = [aws_lb_target_group.ex8-file-layout-albtg.arn]
+  launch_configuration = aws_launch_configuration.ex8-file-layout-launchconfig.name
   vpc_zone_identifier = [
     aws_subnet.webserver-subnet1.id,
     aws_subnet.webserver-subnet2.id
@@ -172,22 +172,22 @@ resource "aws_autoscaling_group" "ex4-file-layout-asg" {
 #
 ################################################
 
-resource "aws_lb" "ex4-file-layout-alb" {
+resource "aws_lb" "ex8-file-layout-alb" {
   name               = "${var.env_type}-t101-alb"
   load_balancer_type = "application"
   subnets = [
     aws_subnet.webserver-subnet1.id,
     aws_subnet.webserver-subnet2.id
   ]
-  security_groups = [aws_security_group.ex4-file-layout-webserver-sg.id]
+  security_groups = [aws_security_group.ex8-file-layout-webserver-sg.id]
 
   tags = {
     Name = "${var.env_type}-t101-alb"
   }
 }
 
-resource "aws_lb_listener" "ex4-file-layout-http" {
-  load_balancer_arn = aws_lb.ex4-file-layout-alb.arn
+resource "aws_lb_listener" "ex8-file-layout-http" {
+  load_balancer_arn = aws_lb.ex8-file-layout-alb.arn
   port              = local.http_port
   protocol          = "HTTP"
 
@@ -203,7 +203,7 @@ resource "aws_lb_listener" "ex4-file-layout-http" {
   }
 }
 
-resource "aws_lb_target_group" "ex4-file-layout-albtg" {
+resource "aws_lb_target_group" "ex8-file-layout-albtg" {
   name     = "t101-alb-tg"
   port     = local.http_port
   protocol = "HTTP"
@@ -220,8 +220,8 @@ resource "aws_lb_target_group" "ex4-file-layout-albtg" {
   }
 }
 
-resource "aws_lb_listener_rule" "ex4-file-layout-albrule" {
-  listener_arn = aws_lb_listener.ex4-file-layout-http.arn
+resource "aws_lb_listener_rule" "ex8-file-layout-albrule" {
+  listener_arn = aws_lb_listener.ex8-file-layout-http.arn
   priority     = 100
 
   condition {
@@ -232,6 +232,6 @@ resource "aws_lb_listener_rule" "ex4-file-layout-albrule" {
 
   action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.ex4-file-layout-albtg.arn
+    target_group_arn = aws_lb_target_group.ex8-file-layout-albtg.arn
   }
 }

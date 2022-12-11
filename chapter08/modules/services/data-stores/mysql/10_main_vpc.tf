@@ -7,29 +7,29 @@ resource "aws_vpc" "mysql_vpc" {
   }
 }
 
-resource "aws_subnet" "ex4_subnet3" {
+resource "aws_subnet" "ex8_subnet3" {
   vpc_id     = aws_vpc.mysql_vpc.id
   cidr_block = var.subnet3_cidr
 
   availability_zone = "ap-northeast-2a"
 
   tags = {
-    Name = "${var.env_type}-terraform-ex4-subnet3"
+    Name = "${var.env_type}-terraform-ex8-subnet3"
   }
 }
 
-resource "aws_subnet" "ex4_subnet4" {
+resource "aws_subnet" "ex8_subnet4" {
   vpc_id     = aws_vpc.mysql_vpc.id
   cidr_block = var.subnet4_cidr
 
   availability_zone = "ap-northeast-2c"
 
   tags = {
-    Name = "${var.env_type}-terraform-ex4-subnet4"
+    Name = "${var.env_type}-terraform-ex8-subnet4"
   }
 }
 
-resource "aws_security_group" "ex4_sg2" {
+resource "aws_security_group" "ex8_sg2" {
   vpc_id      = aws_vpc.mysql_vpc.id
   name        = "${var.env_type}-sg-rds"
   description = "terraform Study SG - RDS"
@@ -41,7 +41,7 @@ resource "aws_security_group_rule" "rds_sg_inbound" {
   to_port           = local.mysql_port
   protocol          = local.tcp_protocol
   cidr_blocks       = local.all_ips
-  security_group_id = aws_security_group.ex4_sg2.id
+  security_group_id = aws_security_group.ex8_sg2.id
 }
 
 resource "aws_security_group_rule" "rds_sg_outbound" {
@@ -50,5 +50,5 @@ resource "aws_security_group_rule" "rds_sg_outbound" {
   to_port           = local.any_port
   protocol          = local.any_protocol
   cidr_blocks       = local.all_ips
-  security_group_id = aws_security_group.ex4_sg2.id
+  security_group_id = aws_security_group.ex8_sg2.id
 }

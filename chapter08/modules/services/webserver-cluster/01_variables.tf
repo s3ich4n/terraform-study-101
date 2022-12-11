@@ -1,15 +1,15 @@
-variable "ex4_cluster_name" {
+variable "ex8_cluster_name" {
   description = "The name of cluster"
   type        = string
 }
 
 variable "db_remote_state_bucket_name" {
-  description = "ex4 remote state bucket name"
+  description = "ex8 remote state bucket name"
   type        = string
 }
 
 variable "db_remote_state_key" {
-  description = "ex4 remote state key path"
+  description = "ex8 remote state key path"
   type        = string
 }
 
