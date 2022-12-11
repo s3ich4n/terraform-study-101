@@ -156,3 +156,8 @@ terraform.rc
 .envrc
 .terraform/
 .terraform.lock.hcl
+
+########
+#
+########
+terraform-3rd-study/
