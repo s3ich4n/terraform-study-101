@@ -22,25 +22,27 @@
   - Terraform의 반복문과 조건문
   - [블로그 게시글: 반복문 관련](https://blog.s3ich4n.me/devlog/terraform/2022-11-19-cloudneta-terraform-101-pt05-1)
   - [블로그 게시글: 조건문 관련](https://blog.s3ich4n.me/devlog/terraform/2022-11-19-cloudneta-terraform-101-pt05-2)
-- 6주차 (WIP)
+- 6주차
   - Managing Secrets w/ Terraform
-  - 예시코드 작성중
-  - 블로그 게시글 작성중
+  - [블로그 게시글](https://blog.s3ich4n.me/devlog/terraform/2022-11-19-cloudneta-terraform-101-pt06)
+- 총 복습 주간
+  - 총복습 내용
+  - [블로그 게시글](https://blog.s3ich4n.me/devlog/terraform/2022-12-10-cloudneta-terraform-101-pt07)
 - 7주차
-  - Working w/ Multiple Providers
-- 8주차
   - 프로덕션 수준의 테라폼 코드
-- 9주차
+  - [블로그 게시글](https://blog.s3ich4n.me/devlog/terraform/2022-12-11-cloudneta-terraform-101-pt08)
+- 8주차 (WIP)
+  - Working w/ Multiple Providers
+  - 블로그 게시글 작성중
+- 개인학습 (12월 3주 내 업데이트)
+  - `chapter09`으로 작성예정
   - 테라폼 코드 테스트
-- 10주차 (아마 연장..?)
-  - 테라폼을 팀에서 사용하는 방법
 - 졸업과제
-  - 상기 1~10주차 게시글 요약
-  - 추가발표 준비 중...
+  - 상기 전체 게시글 요약
+  - ~~추가발표 준비 중...~~ 관련 내용 작성중
 
 ## 참고사항
 
-(EDIT)
-1주 추가로 진행할 것 같음.
-
 스터디 상황에 따라 **일부 수정될 수 있음**
+
+개인학습 내용 및 관련 코드 작성중
